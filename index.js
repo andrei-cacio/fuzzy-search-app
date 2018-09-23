@@ -1,7 +1,6 @@
 import * as wasm from "fuzzy-search";
+import books from './books-db';
 import lorem from './lorem';
-
-window.log = str => console.log('[fuzzy-wasm] ', str);
 
 const loremOpts = {
 	isHardcore: false
@@ -18,10 +17,10 @@ async function renderLorem() {
 async function handleSearch(e) {
 	const content = await lorem.getLorem(loremOpts);
 	const query = e.target.value;
+	const fuzzyed = wasm.fuzzy(query, content);
 
-	console.time('fuzz');
-	const fuzzyed = jsFuzzy(query, content);
-	console.timeEnd('fuzz');
+	const filteredBooks = wasm.filter_books({ col: books }, query);
+	renderBooks(filteredBooks.col);
 
 	document.getElementById('text').innerHTML = fuzzyed;
 }
@@ -32,16 +31,21 @@ function jsFuzzy(query, content) {
 	return content.replace(rgx, i => `<span>${i}</span>`);
 }
 
-async function handleSearchJS(e) {
-	const content = await lorem.getLorem(loremOpts);
-	const query = e.target.value;
+function renderBooks(books) {
+	const booksContainer = document.getElementById('books');
+	booksContainer.innerHTML = '';
 
-	console.time('fuzz');
-	const fuzzyed = wasm.fuzzy(query, content);
-	console.timeEnd('fuzz');
-	document.getElementById('text').innerHTML = fuzzyed;
+	let booksHTML = '';
+
+	books.forEach(book => {
+		booksHTML += `<div class="book">${book.author} - ${book.title}</div>`;
+	});
+
+	booksContainer.innerHTML = booksHTML;
 }
+
 
 document.getElementById('searchField').addEventListener('input', handleSearch);
 
 renderLorem();
+renderBooks(books);

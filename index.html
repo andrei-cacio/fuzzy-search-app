@@ -9,7 +9,7 @@
     		display: flex;
     	}
 
-    	span {
+    	span.match {
     		background-color: cornflowerblue;
     		color: white;
     	}
@@ -30,10 +30,27 @@
     		margin: auto;
     	}
 
+    	.title {
+		    margin: auto;
+    		font-size: 60px;
+    	}
+
+    	.book {
+    		padding: 10px;
+    		border-bottom: 1px solid black
+    	}
+
+    	.book:hover {
+    		background-color: bisque;
+    	}
+
 	</style>
   </head>
   <body>
   	<div class="container">
+  		<div class="section" style="display: flex">
+  			<span class="title">🦀 + 🕸️ = 💖</span>
+  		</div>
 	  <div class="section">
 		  <label for="search">Search</label>
 		  <input disabled id="searchField" name="search" />
@@ -41,6 +58,7 @@
 	  <div id="text" class="section">
 	  	<p class="loading">Fetching some content...</span>
 	  </div>
+	  <div class="section" id="books"></div>
     </div>
     <script src="./bootstrap.js"></script>
   </body>
