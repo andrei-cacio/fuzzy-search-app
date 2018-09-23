@@ -1,7 +1,9 @@
+
 # create-wasm-app
 > an npm init project for generating a project that consumes rust-generated wasm via webpack
 
 ## Usage
+To be used with [wasm-fuzzy-search](https://github.com/andrei-cacio/wasm-fuzzy-search)
 
 ```
 npm init wasm-app
