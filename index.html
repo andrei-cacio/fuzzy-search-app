@@ -4,18 +4,44 @@
     <meta charset="utf-8">
     <title>Hello wasm-pack!</title>
     <style>
+    	body {
+    		background-color: antiquewhite;
+    		display: flex;
+    	}
+
     	span {
-    		background-color: blue;
+    		background-color: cornflowerblue;
     		color: white;
     	}
+
+    	.section {
+    		background-color: burlywood;
+		    padding: 20px;
+		    border-radius: 6px;
+		    margin: 20px;
+    	}
+
+    	.container {
+    		width: 800px;
+    		margin: auto;
+    	}
+
+    	.loading {
+    		margin: auto;
+    	}
+
 	</style>
   </head>
-  <label for="search">Search</label>
-  <input disabled id="searchField" name="search" />
-  <p id="text">
-  	Fetching some content...
-  </p>
   <body>
+  	<div class="container">
+	  <div class="section">
+		  <label for="search">Search</label>
+		  <input disabled id="searchField" name="search" />
+	  </div>
+	  <div id="text" class="section">
+	  	<p class="loading">Fetching some content...</span>
+	  </div>
+    </div>
     <script src="./bootstrap.js"></script>
   </body>
 </html>
